@@ -1,21 +1,27 @@
 package com.Bridgelab.Workshop;
 
 public class GamblingSimulation {
-	public static int amountPerDay=100;
-	public static int betPerDay=1;
-public static void main(String[] args) {
-	int min=0,max=1;
-	
-	
-	int Result= (int)Math.floor(Math.random()*10)%2;
-	System.out.println(Result);
-	
-	if(Result == 1)
+	public static int amountPerDay = 100;
+	public static int betPerDay = 1;
+
+	public static void WinnerLoser(int result)
 	{
-		amountPerDay+=1;
+		
+		if (result == 1) {
+			amountPerDay += 1;
+			System.out.println("Winner");
+			
+		} else {
+			amountPerDay -= 1;
+			System.out.println("Losser");
+		}
 	}
-	else {
-		amountPerDay-=1;
+	public static void main(String[] args) {
+		int result = (int) Math.floor(Math.random() * 10) % 2;
+		System.out.println(result);
+
+		WinnerLoser(result);
+
+		
 	}
-}
 }
