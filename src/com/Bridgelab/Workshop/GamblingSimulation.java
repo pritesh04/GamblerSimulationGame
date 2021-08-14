@@ -4,8 +4,6 @@ public class GamblingSimulation {
 	public static int amountPerDay = 100;
 	public static int betPerDay = 1;
 	public static int stake = amountPerDay;
-	public static double gain = amountPerDay * 0.5;
-	public static double loss = amountPerDay * 0.5;
 
 	public static String WinnerLoser() {
 		int result;
@@ -22,15 +20,27 @@ public class GamblingSimulation {
 	}
 
 	public static void ResignDay() {
+		int initialStackOfDay = stake;
+		double gain = amountPerDay * 1.5;
+		double loss_percentage = amountPerDay * 0.5;
 
-		while (amountPerDay > (loss) && stake < (gain)) {
+		while (stake > (loss_percentage) && stake < (gain)) {
 
 			if (WinnerLoser() == "Winning") {
-				stake += betPerDay;
+				amountPerDay += betPerDay;
+
 			} else {
-				stake -= betPerDay;
+				amountPerDay -= betPerDay;
+
 			}
 		}
+		
+
+	}
+
+	public static void DayAmountWinOrLoss() {
+		for (int i = 0; i < 20; i++)
+			ResignDay();
 
 	}
 
@@ -38,12 +48,11 @@ public class GamblingSimulation {
 
 		GamblingSimulation gamblingSimulation = new GamblingSimulation();
 
-		gamblingSimulation.WinnerLoser();
-		System.out.println("tota amount after 20 days is " + amountPerDay);
-		ResignDay();
-		if (amountPerDay < 100)
-			System.out.println("Gambler loss and total amount = " + amountPerDay);
+		DayAmountWinOrLoss();
+		if (stake > 100)
+			System.out.println("Gambler win and total amount = " + amountPerDay);
 		else
-			System.out.println("Gambler win and total amount =" + amountPerDay);
+			System.out.println("Gambler loss and total amount =" + amountPerDay);
 	}
+
 }
